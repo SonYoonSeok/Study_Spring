@@ -1,2 +1,2 @@
 # Study_Spring
-Studying Spring Boot
+Study basic of String Boot, JPA

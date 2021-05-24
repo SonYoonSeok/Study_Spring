@@ -73,3 +73,15 @@ public class HelloServlet2 extends HttpServlet {
 
 * doPost는 post 요청에 대해서만 처리할 수 있는 메서드이기 때문에 url이 일치해도 405에러가 발생한다.
 
+
+
+## 멀티파트
+
+> 멀티파트는 바이너리 데이터 전송을 위해 사용한다. 서블릿 3.0 이후부터는 서블릿 스펙에 'multipart'가 추가되어 별도의 라이브러리 없이 구현이 가능해졌다.
+
+| Annotation명       | 설명                                                         |
+| :----------------- | ------------------------------------------------------------ |
+| @fileSizeThreshold | fileUpload 시에 메모리에 저장되는 임시파일의 크기를 정의한다. [int] |
+| @location          | 파일 업로드 시에 임시 저장 디렉토리를 지정한다. [String]     |
+| @maxFileSize       | 업로드할 파일의 최대 크기를 지정한다. [long]                 |
+| @maxRequestSize    | request 시에 최대 크기를 지정한다. [long]                    |

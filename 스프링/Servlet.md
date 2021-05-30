@@ -85,3 +85,111 @@ public class HelloServlet2 extends HttpServlet {
 | @location          | 파일 업로드 시에 임시 저장 디렉토리를 지정한다. [String]     |
 | @maxFileSize       | 업로드할 파일의 최대 크기를 지정한다. [long]                 |
 | @maxRequestSize    | request 시에 최대 크기를 지정한다. [long]                    |
+
+
+
+## 필터
+
+> C언어에서는 전처리기를 이용해 컴파일 전에 필요한 작업을 미리 처리할 수 있다. 서블릿은 요청/응답 모델이므로 컴파일 전에 무엇을 할 필요는 없지만, 요청에 대해서 전처리 작업이 필요한 경우가 있다.
+
+
+
+### 웹 필터
+
+> init과 destory메서드를 가지고 있다.
+
+```java
+@WebFilter("*.jsp") //URL에 상관없이 *.jsp파일에 적용하기 위함
+public class FilterEx implements Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        res.setContentType("text/html");
+        res.setCharacterEncoding("UTF-8");
+        PrintWriter out = res.getWriter();
+        out.println("필터 동작 전");
+        chain.doFilter(req, res);
+        out.println("필터 동작 후");
+    } // 필터의 실제작업은 doFilter 안에서 이루어진다.
+
+    @Override
+    public void destroy() {
+
+    }
+```
+
+
+
+## 쿠키
+
+> 쿠키(cookie)는 사용자가 사이트를 방문했을 때, 사용자의 컴퓨터에 저장되는 정보를 말한다,
+
+* 이름 : 각각의 쿠키의 값을 식별하기 위한 키
+* 값 : 특정 이름으로 쿠키에 지정된 값
+* 유효 시간 : 쿠키의 유지 시간
+* 도메인 : 쿠키를 전송할 도메인
+* 경로 : 쿠키를 전송할 요청 경로
+
+=> 쿠키는 HTTP 헤더 정보에 포함되어 전달된다. HTTP 프로토콜은 비연결지향으로 상태 정보를 저장하지 않는다. 이때 상태 정보를 저장할 공간이 필요하게 되며 사용할 수 있는 메커니즘 중 하나가 쿠키다.
+
+
+
+### 쿠키 생성
+
+> Cookie 생성자를 이용해 생성 가능하다
+
+```Java
+Cookie jcookie = new Cookie(name, value);
+```
+
+* map을 사용할 때처럼 key, value 형태로 사용하고 도메인과 최대 유효 기간 등을 설정할 수 있다.
+
+
+
+> 쿠키를 변경하려면 같은 이름으로 쿠키를 생성해서 새로운 값을 지정하면 된다.
+
+```java
+Cookie modifiedCookie = new Cookie(name, 새로운 값);
+```
+
+* 쿠키 자체를 삭제하는 API는 존재하지 않기 때문에 유효 시간을 0으로 설정함으로써 쿠키값을 무효화 할 수 있다.
+
+* 쿠키 값 한글 입력 시에는 URLEncoder를 이용해서 문자열을 감싸 준다.
+  * new Cookie("kor", URLEncoder("데이터", "UTF-8"))
+
+
+
+## 세션
+
+### 세션의 구성
+
+* 세션은 서버와 클라이언트의 유효한 커넥션을 식별하는 정보이다.
+
+* 서버는 클라이언트가 요청을 보내면 식별할 수 있는 ID를 부여한다 -> **세션ID**
+
+* 세션ID는 JSESSIONID라는 쿠키로 저장되고, 클라이언트가 재접속할 때 해당 쿠키를 이용해 세션 ID 값을 서버에 전달한다.
+
+* HttpSession 인터페이스로 정의되어 있다.
+
+  
+
+### 세션의 생성
+
+> request 객체에서 꺼내서 사용할 수 있다.
+
+```java
+request,getSession()
+```
+
+
+
+### 세션정보 출력
+
+* getId(): 세션의 고유 아이디를 얻을 수 있는 메서드이다.
+* getCreationTime(): 세션이 생성된 시간을 얻을 수 있는 메서드다.
+* getLastAccessTime(): 웹 브라우저가 가장 마지막에 세션에 접근한 시간을 얻을 수 있는 메서드다.
+

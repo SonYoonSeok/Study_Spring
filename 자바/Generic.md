@@ -75,3 +75,23 @@ public class GenericDemo {
 }
 ```
 
+
+
+## 와일드카드 <?>
+
+>  객체를 메소드의 매개변수로 받을 때, 객체의 타입 변수를 제한하는 것
+
+```java
+public void myMethod(ArrayList<? extends Number> list) { . . . }
+```
+
+* Number클래스와 Number클래스를 상속받은 클래스들의 객체만 받는다
+
+
+
+### 제한 종류
+
+* <? extends T> 와일드 카드의 상한 제한 - T와 그 자손들을 구현한 객체들만 매개변수로 가능
+* <? super T> 와일드 카드의 하한 제한 - T와 그 조상들을 구현한 객체들만 매개변수로 가능
+* <?> 제한 없음
+

@@ -11,3 +11,45 @@
 
 <img src="https://thebook.io/img/006880/EE_054.jpg" alt="img" style="zoom:70%;" />
 
+
+
+```java
+public class WashingMachine {
+ 
+    public void heavilySoiled() {
+        setWaterTemperature(100);
+        setWashCycleDuration(90);
+        setSpinCycleDuration(10);
+        addDetergent();
+        addBleach();
+        addFabricSoftener();
+        heatWater();
+        startWash();
+    }
+
+    public void lightlySoiled() {
+        setWaterTemperature(40);
+        setWashCycleDuration(20);
+        setSpinCycleDuration(10);
+        addDetergent();
+        heatWater();
+        startWash();
+    }
+}
+ 
+// 퍼사드는 이렇게 사용합니다.
+new WashingMachine().lightlySoiled();
+```
+
+* 퍼사드에 있는 메서드만 호출하고 복잡한 로직은 퍼사드 안에 감춘다.
+* 구현체를 바꾸어도 서비스에 접근하는 클라이언트에는 아무 영향이 없다.
+
+
+
+## 퍼사드 패턴의 장점
+
+* 클라이언트가 하위시스템을 신경쓰지 않아도 돼서 결합도가 낮다.
+* 유지보수성, 관리성이 좋아진다.
+* 로직을 다시 재용할 수 있다.
+* 연관된 메소드들을 하나의 메소드에 묶어서 호출해서 로직이 덜 복잡하다.
+

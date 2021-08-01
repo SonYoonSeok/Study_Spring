@@ -1,2 +1,0 @@
-hello/hellospring/HelloSpringApplicationTests.java
- hello.hellospring.HelloSpringApplicationTests

@@ -19,7 +19,7 @@ CDN이란, **Content delivery network**의 줄임말로 웹페이지나 이미�
 
 ## CDN의 구조
 
-![](C:\Users\sting\Desktop\sdd.jpg)
+<img src="https://i.ibb.co/bQWrLQJ/sdd.jpg">
 
 * 한국에서 사이트를 운영하는 사람이 전 세계 곳곳에 서버를 두고 있는 CDN 업체를 이용한다.
 * 미국에 사는 한 유저가 한국에 있는 사이트에 접속한다.

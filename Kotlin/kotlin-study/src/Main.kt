@@ -1,17 +1,10 @@
-import java.util.*
-
 fun main(args: Array<String>) {
-
-
+    do {
+        val y = retrieveDate()
+    } while (y != null)
 }
 
-fun printKotlin() {
-    println("hello Kotlin")
-}
-
-fun getStringLength(obj: Any): Int? {
-    if (obj is String) {
-        return obj.length
-    }
-    return null
+fun hasPrefix(x: Any) = when (x) {
+    is String -> x.startsWith("prefix")
+    else -> false
 }

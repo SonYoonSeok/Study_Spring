@@ -95,3 +95,67 @@ public void myMethod(ArrayList<? extends Number> list) { . . . }
 * <? super T> 와일드 카드의 하한 제한 - T와 그 조상들을 구현한 객체들만 매개변수로 가능
 * <?> 제한 없음
 
+
+
+## 제네릭 메서드
+
+> 메소드의 선언부에 타입 변수를 사용한 메서드
+
+```java
+public static <T> void sort( ... ) { ... }
+```
+
+* 타입 변수의 선언은 메서드에서 반환 타입 앞에 위치
+
+
+
+### 예시
+
+Box.java
+
+```Java
+public class Box<T> {
+    private T t;
+
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
+}
+```
+
+
+
+Util.java
+
+```java
+public class Util {
+    public static <T> Box<T> boxing(T t) { // 정적 메서드 이므로 인스턴스화 없이 접근 가능
+        Box<T> box = new Box<T>();
+        box.setT(t);
+        return box;
+    }
+}
+```
+
+
+
+Main.java
+
+```Java
+public static void main(String[] args) throws IOException {
+
+    Box<Integer> box1 = Util.<Integer>boxing(100); // 타입을 명시하는 호출
+    int intValue = box1.getT();
+
+    Box<String> box2 = Util.boxing("암묵적 호출"); // 암묵적 호출
+    String stringValue = box2.getT();
+
+    System.out.println("intValue : " + intValue + "\nstringValue : " + stringValue);
+
+}
+```
+

@@ -1,6 +1,10 @@
 fun main(args: Array<String>) {
+    foo("asddd")
+    foo("sdsd", "sdaga", "gdhjhl", "as")
+}
 
-    val a: Int = 3
-    val aInt: Int? = a as? Int
-
+fun foo(vararg strings:String) {
+    strings.forEach {
+        print(it)
+    }
 }

@@ -1,15 +1,9 @@
 fun main(args: Array<String>) {
-    var price = 999999
-    var a = Book("해로의 모험", 10000).apply {
-        name = "[폭탄세일중] " + name
-        discount()
-    }
 
-    a.let { println("상품명 : ${it.name}, 가격 ${it.price}") }
+    var arr = intArrayOf(3, 0, 6, 1, 5)
+    print(Solution().solution(arr))
 }
 
-class Book(var name: String, var price: Int) {
-    fun discount(){
-        price -= 2000
-    }
+inline fun <T, R> Iterable<T>.flatMap() {
+    transform
 }
